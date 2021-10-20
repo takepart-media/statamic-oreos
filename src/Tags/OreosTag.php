@@ -3,15 +3,12 @@
 namespace Takepart\Oreos\Tags;
 
 use Exception;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cookie;
 use Statamic\Tags\Tags;
 use Takepart\Oreos\OreosManager;
 
 class OreosTag extends Tags
 {
-    protected static $handle = 'oreo';
+    protected static $handle = 'oreos';
 
     protected OreosManager $manager;
 
@@ -55,6 +52,16 @@ class OreosTag extends Tags
         }
 
         $this->manager->saveConsents();
+    }
+
+    public function form()
+    {
+        return view('oreos::form');
+    }
+
+    public function script()
+    {
+        return view('oreos::script');
     }
 
 }

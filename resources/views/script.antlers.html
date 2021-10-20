@@ -1,0 +1,65 @@
+<script>
+(function(){
+
+    const saveButton = document.getElementById('{{ saveButtonId ?? "oreos-save" }}');
+    const saveAllButton = document.getElementById('{{ saveAllButtonId ?? "oreos-save-all" }}');
+    const cancelButton = document.getElementById('{{ cancelButtonId ?? "oreos-cancel" }}');
+    const form = document.getElementById('{{ formId ?? "oreos-form" }}');
+
+    async function post(url = '', data = {}) {
+        data._token = '{{ csrf_token }}';
+
+        const response = await fetch(url, {
+            method: 'POST',
+            //mode: 'cors', // no-cors, *cors, same-origin
+            //cache: 'no-cache',
+            //headers: {
+            //    'Content-Type': 'application/json'
+            //},
+            body: JSON.stringify(data)
+        });
+
+        return response.json();
+    };
+
+    function closeForm() {
+        form.parentNode.removeChild(form);
+    }
+
+    if (saveButton) {
+        saveButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const apiUrl = '{{ route:statamic.oreos.save }}';
+            const checkboxes = document.querySelectorAll('input[data-oreos-handle]');
+            const options = {};
+
+            checkboxes.forEach((item) => {
+                options[item.dataset.oreosHandle] = item.checked;
+            });
+
+            post(apiUrl, options).then((response) => {
+                console.log(response);
+            });
+        });
+    }
+
+    if (saveAllButton) {
+        saveAllButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            const apiUrl = '{{ route:statamic.oreos.saveAll }}';
+            post(apiUrl, {}).then((response) => {
+                console.log(response);
+            });
+        });
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            closeOreosForm();
+        });
+    }
+
+})();
+</script>
