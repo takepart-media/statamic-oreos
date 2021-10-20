@@ -1,0 +1,49 @@
+{
+    "name": "takepart/oreos",
+    "description": "Cookie consent manager for Statamic 3",
+    "license": "proprietary",
+    "type": "statamic-addon",
+    "authors": [
+        {
+            "name": "Dennis Dick",
+            "email": "dick@takepart-media.de",
+            "homepage": "https://www.takepart-media.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Jakob Ploens",
+            "email": "jploens@takepart-media.de",
+            "homepage": "https://www.takepart-media.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "it@takepart-media.de"
+    },
+    "autoload": {
+        "psr-4": {
+            "Takepart\\Oreos\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Oreos",
+            "description": "Cookie consent manager for Statamic 3"
+        },
+        "laravel": {
+            "providers": [
+                "Takepart\\Oreos\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "pixelfear/composer-dist-plugin": "^0.1.5",
+        "statamic/cms": "3.0.* || 3.1.* || 3.2.*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
