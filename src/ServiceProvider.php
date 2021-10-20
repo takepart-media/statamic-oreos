@@ -3,12 +3,16 @@
 namespace Takepart\Oreos;
 
 use Statamic\Providers\AddonServiceProvider;
-use Takepart\Oreos\Tags\OreoTag;
+use Takepart\Oreos\Tags\OreosTag;
 
 class ServiceProvider extends AddonServiceProvider
 {
     protected $tags = [
-        OreoTag::class
+        OreosTag::class
+    ];
+
+    protected $routes = [
+        'actions' => __DIR__ . '/../routes/actions.php',
     ];
 
     public function boot()

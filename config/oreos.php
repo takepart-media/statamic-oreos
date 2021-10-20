@@ -26,7 +26,19 @@ return [
     |
     */
 
-    'cookie_name' => env('TP_OREOS_NAME', 'TP_OREOS'),
+    'name' => env('TP_OREOS_NAME', 'TP_OREOS'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Expires After
+    |--------------------------------------------------------------------------
+    |
+    | Sets the time after which the consents are expired, in minutes.
+    | Default value are 30 days (á 24 hours á 60 minutes).
+    |
+    */
+
+    'expires_after' => env('TP_OREOS_EXPIRES_AFTER', 60 * 24 * 30),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +51,7 @@ return [
     */
 
     'groups' => [
-        'essential' => [
+        'essentials' => [
             'required' => true,
             'default' => true
         ],
