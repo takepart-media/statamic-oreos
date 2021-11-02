@@ -27,8 +27,10 @@ class OreosManager
 
     public function getGroupsWithInfo(): Collection
     {
+        $contents = (new OreosContent);
+
         return $this->groups
-            ->map(function($group, $key) {
+            ->map(function($group, $key) use($contents) {
                 $explicit = $this->isGroupExplicitlySet($key);
                 $consent = $this->isGroupConsent($key);
                 $default = $group['default'];
@@ -41,9 +43,8 @@ class OreosManager
                     'checked' => (($explicit && $consent) || (!$explicit && $default)),
                     'default' => $default,
                     'required' => $required,
-                    'title' => Str::title($key),
-                    // 'title' => statamic content,
-                    // 'description' => statamic content,
+                    'title' => $contents->get($key . '_title') ?? Str::title($key),
+                    'description' => $contents->get($key . '_description'),
                 ];
             });
     }
