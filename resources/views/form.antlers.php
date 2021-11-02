@@ -1,5 +1,5 @@
 <form action="{{ route:statamic.oreos.save }}" method="post">
-    {{ csrf_field }}
+    <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
 
     <div class="flex flex-col gap-2 my-8">
         {{ oreos:groups }}
