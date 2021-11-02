@@ -55,6 +55,8 @@ To check if a cookie group was given consent to, use the `oreos:check` tag:
 {{ /if }}
 ```
 
+As a shorter alternative, you can omit `:check` and just use `{{ oreos key="yourgrouphandle" }}` to check for a consent cookie group.
+
 ## Authors
 
 - Dennis Dick, <dick@takepart-media.de>

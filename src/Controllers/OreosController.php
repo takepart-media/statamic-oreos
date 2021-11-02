@@ -18,17 +18,22 @@ class OreosController extends Controller
     public function save(Request $request)
     {
         $action = $request->get('action');
-        $oreos = $request->get('oreos') ?? [];
 
         if ($action === 'accept-all') {
             $oreos = $this->manager->getGroups()->keys()->toArray();
+
+        } else {
+            $oreos = $request->get('oreos') ?? [];
+
+            $required = $this->manager->getGroups()->filter(function($group) {
+                return $group['required'];
+            })->keys()->toArray();
+
+            $oreos = array_merge(
+                $oreos,
+                $required
+            );
         }
-
-        $required = $this->manager->getGroups()->filter(function($group) {
-            return $group['required'];
-        })->keys()->toArray();
-
-        $oreos = array_merge($oreos, $required);
 
         foreach ($oreos as $oreo) {
             $this->manager->setGroupConsent($oreo);
