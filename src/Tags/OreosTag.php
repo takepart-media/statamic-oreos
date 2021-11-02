@@ -42,7 +42,12 @@ class OreosTag extends Tags
 
     public function form()
     {
-        return view('oreos::form');
+        return view('oreos::form', [
+            'showDescription' => $this->params->get('description') ?? true,
+            'showAcceptall' => $this->params->get('acceptall') ?? true,
+            'showCancel' => $this->params->get('cancel') ?? true,
+            'showReset' => $this->params->get('reset') ?? false,
+        ]);
     }
 
     public function popup()

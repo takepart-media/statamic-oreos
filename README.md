@@ -35,7 +35,16 @@ To recall the settings, usually within the privacy statements, add the `oreos:fo
 {{ oreos:form }}
 ```
 
-This will show just the form from the popup, not everything around.
+This will show just the form from the popup, not everything around. By passing parameters, you can show or hide certain elements. If you are using custom views, this feature might be broken. The default config (if parameters are omitted, the default value will kick in):
+
+```
+{{ oreos:form
+    description="true"
+    acceptall="true"
+    cancel="true"
+    reset="false"
+}}
+```
 
 ### Custom views
 

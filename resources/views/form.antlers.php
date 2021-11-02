@@ -15,7 +15,8 @@
                     >
                     <div>
                         <p class="font-semibold">{{ title }}</p>
-                        {{ if description }}
+
+                        {{ if showDescription && description }}
                             <p class="text-sm text-gray-600">{{ description }}</p>
                         {{ /if }}
                     </div>
@@ -28,19 +29,31 @@
         <button class="py-1 px-2 bg-gray-200 border hover:border-current" type="submit" name="action" value="save">
             Save
         </button>
-        <button class="py-1 px-2 border hover:border-current" type="submit" name="action" value="accept-all">
-            Accept all
-        </button>
-        <button class="py-1 px-2 border hover:border-current" type="reset" onclick="removeOreosPopup()">
-            Cancel
-        </button>
-    </div>
 
-    <script>
-        function removeOreosPopup() {
-            const el = document.getElementById('{{ popupId ?? "oreos-popup" }}');
-            if (el) el.parentNode.removeChild(el);
-        }
-    </script>
+        {{ if showAcceptall }}
+            <button class="py-1 px-2 border hover:border-current" type="submit" name="action" value="accept-all">
+                Accept all
+            </button>
+        {{ /if }}
+
+        {{ if showCancel }}
+            <button class="py-1 px-2 border hover:border-current" type="reset" onclick="removeOreosPopup()">
+                Cancel
+            </button>
+            <script>
+                function removeOreosPopup() {
+                    const el = document.getElementById('{{ popupId ?? "oreos-popup" }}');
+                    if (el) el.parentNode.removeChild(el);
+                }
+            </script>
+        {{ /if }}
+
+        {{ if showReset }}
+            <button class="py-1 px-2 border hover:border-current" type="submit" name="action" value="reset">
+                Reset
+            </button>
+        {{ /if }}
+
+    </div>
 
 </form>

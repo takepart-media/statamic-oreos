@@ -86,6 +86,13 @@ class OreosManager
         );
     }
 
+    public function resetConsents()
+    {
+        Cookie::queue(
+            Cookie::forget( $this->getConfig('name') )
+        );
+    }
+
     public function isCookieSet(): bool
     {
         return Cookie::has( $this->getConfig('name') );

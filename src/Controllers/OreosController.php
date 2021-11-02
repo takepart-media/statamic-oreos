@@ -19,7 +19,10 @@ class OreosController extends Controller
     {
         $action = $request->get('action');
 
-        if ($action === 'accept-all') {
+        if ($action === 'reset') {
+            return $this->reset();
+
+        } elseif ($action === 'accept-all') {
             $oreos = $this->manager->getGroups()->keys()->toArray();
 
         } else {
@@ -40,6 +43,14 @@ class OreosController extends Controller
         }
 
         $this->manager->saveConsents();
+
+        return back();
+    }
+
+
+    public function reset()
+    {
+        $this->manager->resetConsents();
 
         return back();
     }
