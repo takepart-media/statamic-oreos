@@ -40,20 +40,6 @@ class OreosTag extends Tags
             ->toArray();
     }
 
-    public function set()
-    {
-        $cookies = $this->manager->getGroupsWithInfo()
-            ->map(function($group) {
-                return $group['default'];
-            })->toArray();
-
-        foreach ($cookies as $key => $value) {
-            $this->manager->setGroupConsent($key, $value);
-        }
-
-        $this->manager->saveConsents();
-    }
-
     public function form()
     {
         return view('oreos::form');
@@ -61,7 +47,9 @@ class OreosTag extends Tags
 
     public function popup()
     {
-        return view('oreos::popup');
+        if (! $this->manager->isCookieSet()) {
+            return view('oreos::popup');
+        }
     }
 
 }

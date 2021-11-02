@@ -20,6 +20,11 @@ class OreosManager
         $this->consents = $this->loadConsents();
     }
 
+    public function getGroups(): Collection
+    {
+        return $this->groups;
+    }
+
     public function getGroupsWithInfo(): Collection
     {
         return $this->groups
@@ -72,16 +77,16 @@ class OreosManager
         $this->consents[$key] = $consent;
     }
 
-    // public function saveConsents()
-    // {
-    //     Cookie::queue(
-    //         $this->getConfig('name'),
-    //         collect($this->consents),
-    //         $this->getConfig('expires_after')
-    //     );
-    // }
+    public function saveConsents()
+    {
+        Cookie::queue(
+            $this->getConfig('name'),
+            collect($this->consents),
+            $this->getConfig('expires_after')
+        );
+    }
 
-    protected function isCookieSet(): bool
+    public function isCookieSet(): bool
     {
         return Cookie::has( $this->getConfig('name') );
     }
