@@ -59,9 +59,9 @@ class OreosTag extends Tags
         return view('oreos::form');
     }
 
-    public function script()
+    public function popup()
     {
-        return view('oreos::script');
+        return view('oreos::popup');
     }
 
 }

@@ -2,10 +2,11 @@
 
 namespace Takepart\Oreos\Controllers;
 
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Statamic\Http\Controllers\Controller;
 use Takepart\Oreos\OreosManager;
 
-class OreosController
+class OreosController extends Controller
 {
     protected OreosManager $manager;
 
@@ -18,14 +19,9 @@ class OreosController
     {
         // loop through request fields and save all values, if available
 
-        return $request;
-    }
+        return $request->session()->token();
 
-    public function saveAll(Request $request)
-    {
-        // get all and consent all, no matter the request
-
-        return $request;
+        // return $request;
     }
 
 }

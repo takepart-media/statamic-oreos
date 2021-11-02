@@ -72,14 +72,14 @@ class OreosManager
         $this->consents[$key] = $consent;
     }
 
-    public function saveConsents()
-    {
-        Cookie::queue(
-            $this->getConfig('name'),
-            collect($this->consents),
-            $this->getConfig('expires_after')
-        );
-    }
+    // public function saveConsents()
+    // {
+    //     Cookie::queue(
+    //         $this->getConfig('name'),
+    //         collect($this->consents),
+    //         $this->getConfig('expires_after')
+    //     );
+    // }
 
     protected function isCookieSet(): bool
     {
