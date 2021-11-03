@@ -2,7 +2,7 @@
     <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
 
     <div class="flex flex-col gap-2 my-8">
-        {{ oreos:groups }}
+        {{ oreos }}
             <div>
                 <label class="flex items-baseline">
                     <input
@@ -22,7 +22,7 @@
                     </div>
                 </label>
             </div>
-        {{ /oreos:groups }}
+        {{ /oreos }}
     </div>
 
     <div class="flex gap-2">

@@ -17,20 +17,9 @@ class OreosTag extends Tags
         $this->manager = new OreosManager;
     }
 
-    public function index(): bool
+    public function index(): array
     {
-        return $this->check();
-    }
-
-    public function check(): bool
-    {
-        $key = $this->params->get('key');
-
-        if (! $this->manager->isGroupAvailable($key)) {
-            throw new Exception('Oreo can not find a group `' . $key . '` in its configuration');
-        }
-
-        return $this->manager->isGroupConsent($key);
+        return $this->groups();
     }
 
     public function groups(): array

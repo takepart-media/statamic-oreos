@@ -7,11 +7,13 @@ use Statamic\Facades\Permission;
 use Statamic\Facades\User;
 use Statamic\Providers\AddonServiceProvider;
 use Takepart\Oreos\Tags\OreosTag;
+use Takepart\Oreos\Tags\OreoTag;
 
 class ServiceProvider extends AddonServiceProvider
 {
     protected $tags = [
-        OreosTag::class
+        OreosTag::class,
+        OreoTag::class,
     ];
 
     protected $routes = [
@@ -24,17 +26,28 @@ class ServiceProvider extends AddonServiceProvider
         parent::boot();
 
         $this->bootAddonConfig()
+             ->bootAddonViews()
              ->bootAddonPermissions()
              ->bootAddonNav();
     }
 
     protected function bootAddonConfig(): self
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/oreos.php', 'statamic.oreos');
-
         $this->publishes([
-            __DIR__.'/../config/oreos.php' => config_path('statamic/oreos.php'),
+            __DIR__.'/../config/oreos.php' => config_path('oreos.php'),
         ], 'oreos-config');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/oreos.php', 'oreos');
+
+        return $this;
+    }
+
+    protected function bootAddonViews(): self
+    {
+        $this->publishes([
+            __DIR__.'/../resources/views/form.antlers.php' => resource_path('views/vendor/oreos/form.antlers.php'),
+            __DIR__.'/../resources/views/popup.antlers.html' => resource_path('views/vendor/oreos/popup.antlers.html'),
+        ], 'oreos-views');
 
         return $this;
     }

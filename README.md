@@ -1,8 +1,15 @@
 # Oreos
 
-> Cookie consent manager for Statamic 3
+> Cookie consent manager for Statamic 3, brought to you by TAKEPART Media + Science, Cologne.
 
 ## Features
+
+*Oreos* gives you the opportunity to manage cookie consents on two levels: groups of consents and the regarding settings are managed via the addons’ config-file, whereas the corresponding titles and descriptions are managed from within the control panel. This enables your authors to not only edit texts on the fly, without the need to deploy the site or the developer to open their editor, but also to manage texts in multi-site (and multi-lang) installations.
+
+- Manage cookies via addon config file
+- Manage texts for cookies via control panel
+- Permissions for control panel views (view and edit)
+- Customizable views for formular (antlers tag, e.g. for privacy page) and popup (the one shown if no cookie is set)
 
 ## How to Install
 
@@ -12,14 +19,22 @@ You can search for this addon in the `Tools > Addons` section of the Statamic co
 composer require takepart/oreos
 ```
 
+After that, publish the config file to customize your consent groups and to tweak other settings.
+
+```bash
+php artisan vendor:publish --tag=oreos-config
+```
+
 ## How to Use
 
-### Form and popup usage
+### Default views
 
-To add the popup with the included form to your layout, use the `oreos:popup` tag to place it at it's belonging position (usually near the end of the body as first-level child):
+#### Popup
+
+To add the popup with the included form to your layout, use the `oreos:popup` tag to place it at it's belonging position (usually near the end of the body as first-level child, e.g. in your main layout file):
 
 **resources/views/layout.antlers.html**
-```
+```html
         ...
 
         {{ oreos:popup }}
@@ -27,17 +42,19 @@ To add the popup with the included form to your layout, use the `oreos:popup` ta
 </html>
 ```
 
-When saved, the page gets reloaded (technically, we got redirected to the referers page after saving within the posted controller's action at `/!/oreos/save`).
+When saved, the page gets reloaded (technically, we got redirected to the referers page after saving within the posted controller's action at `/!/oreos/save`), so all statements to check for consents should return the correct setting.
+
+#### Formular
 
 To recall the settings, usually within the privacy statements, add the `oreos:form` tag. This can be done within your content, but be sure to allow antlers to be parsed:
 
-```
+```html
 {{ oreos:form }}
 ```
 
-This will show just the form from the popup, not everything around. By passing parameters, you can show or hide certain elements. If you are using custom views, this feature might be broken. The default config (if parameters are omitted, the default value will kick in):
+This will show just the *form from within the popup*, not the popup itself (everything around the form). By passing parameters, you can show or hide certain elements. If you are using custom views, this feature might be broken. The default config (if parameters are omitted, the default value will kick in):
 
-```
+```html
 {{ oreos:form
     description="true"
     acceptall="true"
@@ -50,21 +67,26 @@ This will show just the form from the popup, not everything around. By passing p
 
 Pretty sure you want to customize the experience for your visitors: we got you covered. With the help of our tags, you can pretty easily overwrite and customize both the popup as well as the form – or just some part of it.
 
-(tbd)
+First, publish the addon’s views:
+
+```bash
+php artisan vendor:publish --tag=oreos-views
+```
+
+This should create the two files inside the folder `/resources/views/vendor/oreos/` for the form (`form.antlers.php`) and the popup (`popup.antlers.html`). Those files can be customized as you wish. You even have the possibility to completely omit our views and just use our backbone, by using our controller endpoint and our `oreos` tag from within your own partials or templates. Have a look at `form.antlers.php` how everything is wired up!
+
 
 ### Check for consents
 
-To check if a cookie group was given consent to, use the `oreos:check` tag:
+To check if a cookie group was given consent to, use the `oreo:yourgrouphandle` tag:
 
-```
-{{ if {oreos:check key="yourgrouphandle"} }}
+```html
+{{ if {oreo:yourgrouphandle} }}
     do something if yourgrouphandle is checked
 {{ else }}
     do something if yourgrouphandle is *not* checked
 {{ /if }}
 ```
-
-As a shorter alternative, you can omit `:check` and just use `{{ oreos key="yourgrouphandle" }}` to check for a consent cookie group.
 
 ## Authors
 

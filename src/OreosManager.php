@@ -134,7 +134,7 @@ class OreosManager
 
     protected function loadConfig(): array
     {
-        return config('statamic.oreos');
+        return config('oreos');
     }
 
 }
