@@ -1,6 +1,6 @@
-# Oreos
+# Statamic Oreos
 
-> Cookie consent manager for Statamic 3, brought to you by TAKEPART Media + Science, Cologne.
+> Cookie consent manager for Statamic 3.
 
 ## Features
 
