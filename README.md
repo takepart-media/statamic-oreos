@@ -16,7 +16,7 @@
 You can search for this addon in the `Tools > Addons` section of the Statamic control panel and click **install**, or run the following command from your project root:
 
 ``` bash
-composer require takepart/oreos
+composer require takepart-media/statamic-oreos
 ```
 
 After that, publish the config file to customize your consent groups and to tweak other settings.
