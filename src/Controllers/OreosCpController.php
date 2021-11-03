@@ -29,8 +29,8 @@ class OreosCpController extends Controller
             ->addValues(OreosContent::load()->all())
             ->preProcess();
 
-        return view('oreos::edit', [
-            'title' => __('oreos::messages.title'),
+        return view('statamic-oreos::edit', [
+            'title' => __('statamic-oreos::messages.title'),
             'action' => cp_route('oreos.update'),
             'blueprint' => $blueprint->toPublishArray(),
             'meta' => $fields->meta(),

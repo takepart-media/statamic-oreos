@@ -63,11 +63,11 @@ class OreosContent extends Collection
             $instructions = [];
 
             $instructions[] = $settings['required']
-                ? __('oreos::messages.fields.required')
-                : __('oreos::messages.fields.optional');
+                ? __('statamic-oreos::messages.fields.required')
+                : __('statamic-oreos::messages.fields.optional');
 
             if ($settings['default']) {
-                $instructions[] = __('oreos::messages.fields.default');
+                $instructions[] = __('statamic-oreos::messages.fields.default');
             }
 
             $newFields = [
@@ -82,7 +82,7 @@ class OreosContent extends Collection
                 [
                     'handle' => $handle . '_title',
                     'field' => [
-                        'display' => __('oreos::messages.fields.title'),
+                        'display' => __('statamic-oreos::messages.fields.title'),
                         'type' => 'text',
                         'localizable' => true,
                         'default' => Str::title($handle),
@@ -92,7 +92,7 @@ class OreosContent extends Collection
                 [
                     'handle' => $handle . '_description',
                     'field' => [
-                        'display' => __('oreos::messages.fields.description'),
+                        'display' => __('statamic-oreos::messages.fields.description'),
                         'type' => 'textarea',
                         'localizable' => true,
                     ],
