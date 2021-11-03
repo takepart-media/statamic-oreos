@@ -2,6 +2,8 @@
 
 namespace Takepart\Oreos\Tags;
 
+use Statamic\Facades\GlobalSet;
+use Statamic\Facades\Site;
 use Statamic\Tags\Tags;
 use Takepart\Oreos\OreosManager;
 
@@ -30,12 +32,7 @@ class OreosTag extends Tags
 
     public function form()
     {
-        return view('statamic-oreos::form', [
-            'showDescription' => $this->params->get('description') ?? true,
-            'showAcceptall' => $this->params->get('acceptall') ?? true,
-            'showCancel' => $this->params->get('cancel') ?? true,
-            'showReset' => $this->params->get('reset') ?? false,
-        ]);
+        return $this->view('form');
     }
 
     public function popup()
@@ -44,12 +41,21 @@ class OreosTag extends Tags
             return;
         }
 
-        return view('statamic-oreos::popup', [
+        return $this->view('popup');
+    }
+
+    protected function view(string $key)
+    {
+        $data = [
+            'site' => Site::current()->augmentedArrayData(),
+
             'showDescription' => $this->params->get('description') ?? true,
             'showAcceptall' => $this->params->get('acceptall') ?? true,
             'showCancel' => $this->params->get('cancel') ?? true,
             'showReset' => $this->params->get('reset') ?? false,
-        ]);
+        ];
+
+        return view('statamic-oreos::' . $key, $data);
     }
 
 }
