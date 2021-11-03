@@ -30,7 +30,7 @@ class OreosTag extends Tags
 
     public function form()
     {
-        return view('oreos::form', [
+        return view('statamic-oreos::form', [
             'showDescription' => $this->params->get('description') ?? true,
             'showAcceptall' => $this->params->get('acceptall') ?? true,
             'showCancel' => $this->params->get('cancel') ?? true,
@@ -44,7 +44,7 @@ class OreosTag extends Tags
             return;
         }
 
-        return view('oreos::popup', [
+        return view('statamic-oreos::popup', [
             'showDescription' => $this->params->get('description') ?? true,
             'showAcceptall' => $this->params->get('acceptall') ?? true,
             'showCancel' => $this->params->get('cancel') ?? true,
