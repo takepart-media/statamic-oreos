@@ -25,6 +25,12 @@ After that, publish the config file to customize your consent groups and to twea
 php artisan vendor:publish --tag=oreos-config
 ```
 
+To customize the user experience, you are free to publish the views to customize them based on your needs:
+
+```bash
+php artisan vendor:publish --tag=oreos-views
+```
+
 ## How to Use
 
 ### Default views
@@ -75,7 +81,30 @@ php artisan vendor:publish --tag=oreos-views
 
 This should create the two files inside the folder `/resources/views/vendor/oreos/` for the form (`form.antlers.php`) and the popup (`popup.antlers.html`). Those files can be customized as you wish. You even have the possibility to completely omit our views and just use our backbone, by using our controller endpoint and our `oreos` tag from within your own partials or templates. Have a look at `form.antlers.php` how everything is wired up!
 
+### Use cookie groups elsewhere
 
+With the help of the `oreos` tag, you can display your cookie groups with all relevant information everywhere on your website:
+
+```html
+{{ oreos }}
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+    <p>Consent: {{ consent ? 'true' : 'false' }}</p>
+{{ /oreos }}
+```
+
+The following attributes are augmented within the oreos-loop:
+
+| Handle | Type | Description |
+| ---- | ---- | ---- |
+| **`handle`** | `string` | The group handle you configured inside the `config/oreos.php` |
+| **`title`** | `string` | The title for your group as written in the control panel (localized). |
+| **`description`** | `string` | The description for your group as written in the control panel (localized). |
+| **`consent`** | `bool` | If the user has given their consent or not. |
+| **`explicit`** | `bool` | If the cookie is explicitly set. |
+| **`required`** | `bool` | If the consent is required. |
+| **`default`** | `bool` | If the checkbox is checked by default. |
+| **`checked`** | `bool` | If the checkbox in the form is checked or not. Calculated based on consent, explicit, default and required. |
 ### Check for consents
 
 To check if a cookie group was given consent to, use the `oreo:yourgrouphandle` tag:
