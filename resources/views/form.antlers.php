@@ -27,18 +27,18 @@
 
     <div class="flex gap-2">
         <button class="py-1 px-2 bg-gray-200 border hover:border-current" type="submit" name="action" value="save">
-            Save
+            {{ __('statamic-oreos::messages.button.save') }}
         </button>
 
         {{ if showAcceptall }}
             <button class="py-1 px-2 border hover:border-current" type="submit" name="action" value="accept-all">
-                Accept all
+                {{ __('statamic-oreos::messages.button.acceptall') }}
             </button>
         {{ /if }}
 
         {{ if showCancel }}
             <button class="py-1 px-2 border hover:border-current" type="reset" onclick="removeOreosPopup()">
-                Cancel
+                {{ __('statamic-oreos::messages.button.cancel') }}
             </button>
             <script>
                 function removeOreosPopup() {
@@ -50,7 +50,7 @@
 
         {{ if showReset }}
             <button class="py-1 px-2 border hover:border-current" type="submit" name="action" value="reset">
-                Reset
+                {{ __('statamic-oreos::messages.button.reset') }}
             </button>
         {{ /if }}
 
