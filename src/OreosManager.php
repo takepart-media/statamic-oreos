@@ -5,7 +5,7 @@ namespace Takepart\Oreos;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Cookie as CookieJar;
 
 class OreosManager
 {
@@ -80,28 +80,36 @@ class OreosManager
 
     public function saveConsents()
     {
-        Cookie::queue(
+        $cookie = cookie(
             $this->getConfig('name'),
             collect($this->consents),
-            $this->getConfig('expires_after')
+            $this->getConfig('expires_after'),
+            config('session.path'),
+            config('session.domain') ?? request()->getHost(),
+            config('session.secure'),
+            config('session.http_only'),
+            false,
+            config('session.same_site')
         );
+
+        CookieJar::queue( $cookie );
     }
 
     public function resetConsents()
     {
-        Cookie::queue(
-            Cookie::forget( $this->getConfig('name') )
+        CookieJar::queue(
+            CookieJar::forget( $this->getConfig('name') )
         );
     }
 
     public function isCookieSet(): bool
     {
-        return Cookie::has( $this->getConfig('name') );
+        return CookieJar::has( $this->getConfig('name') );
     }
 
     protected function getCookie(): string
     {
-        return Cookie::get( $this->getConfig('name') );
+        return CookieJar::get( $this->getConfig('name') );
     }
 
     protected function getCookieData(): Collection
