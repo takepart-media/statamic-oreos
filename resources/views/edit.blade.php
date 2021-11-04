@@ -4,7 +4,7 @@
 @section('content')
 
     <publish-form
-        title="{{ __('oreos::messages.title') }}"
+        title="{{ __('statamic-oreos::messages.title') }}"
         action="{{ $action }}"
         :blueprint='@json($blueprint)'
         :meta='@json($meta)'
