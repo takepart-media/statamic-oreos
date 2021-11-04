@@ -122,4 +122,4 @@ To check if a cookie group was given consent to, use the `oreo:yourgrouphandle` 
 - Dennis Dick, <dick@takepart-media.de>
 - Jakob Plöns, <jploens@takepart-media.de>
 
-© 2021 TAKEPART MEDIA
+© 2021 TAKEPART Media + Science GmbH
