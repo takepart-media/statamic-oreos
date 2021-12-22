@@ -98,7 +98,11 @@ class OreosManager
     public function resetConsents()
     {
         CookieJar::queue(
-            CookieJar::forget( $this->getConfig('name') )
+            CookieJar::forget(
+                $this->getConfig('name'),
+                config('session.path'),
+                config('session.domain') ?? request()->getHost()
+            )
         );
     }
 
