@@ -36,10 +36,6 @@
             ]
         }
     },
-    "require": {
-        "php": "^7.2 || ^8.0",
-        "statamic/cms": "3.2.*"
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
