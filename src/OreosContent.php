@@ -97,6 +97,14 @@ class OreosContent extends Collection
                         'localizable' => true,
                     ],
                 ],
+                [
+                    'handle' => $handle . '_details',
+                    'field' => [
+                        'display' => __('statamic-oreos::messages.fields.details'),
+                        'type' => 'bard',
+                        'localizable' => true,
+                    ],
+                ],
             ];
 
             $fields = array_merge($fields, $newFields);

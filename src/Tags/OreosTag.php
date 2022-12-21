@@ -2,7 +2,6 @@
 
 namespace Takepart\Oreos\Tags;
 
-use Statamic\Facades\GlobalSet;
 use Statamic\Facades\Site;
 use Statamic\Tags\Tags;
 use Takepart\Oreos\OreosManager;
@@ -50,6 +49,8 @@ class OreosTag extends Tags
             'site' => Site::current()->augmentedArrayData(),
 
             'showDescription' => $this->params->get('description') ?? true,
+            'showDetails' => $this->params->get('details') ?? true,
+
             'showAcceptall' => $this->params->get('acceptall') ?? true,
             'showCancel' => $this->params->get('cancel') ?? true,
             'showReset' => $this->params->get('reset') ?? false,
