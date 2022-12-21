@@ -42,6 +42,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Resets with new config
+    |--------------------------------------------------------------------------
+    |
+    | Adds a check wether new a configuration (specifically, added or
+    | updated cookie keys) should trigger a consent reset.
+    |
+    */
+
+    'resets_with_new_config' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Cookie Groups
     |--------------------------------------------------------------------------
     |
@@ -57,7 +69,7 @@ return [
         ],
         'analytics' => [
             'required' => false,
-            'default' => true,
+            'default' => false,
         ],
         'embeds' => [
             'required' => false,

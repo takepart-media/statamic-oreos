@@ -17,6 +17,9 @@ class OreosManager
     {
         $this->config = $this->loadConfig();
         $this->groups = $this->loadGroups();
+
+        $this->checkForNewConfig();
+
         $this->consents = $this->loadConsents();
     }
 
@@ -45,6 +48,7 @@ class OreosManager
                     'required' => $required,
                     'title' => $contents->get($key . '_title') ?? Str::title($key),
                     'description' => $contents->get($key . '_description'),
+                    'details' => $contents->get($key . '_details'),
                 ];
             });
     }
@@ -104,6 +108,28 @@ class OreosManager
                 config('session.domain') ?? request()->getHost()
             )
         );
+    }
+
+    public function checkForNewConfig(): void
+    {
+        if (! config('oreos.resets_with_new_config', true)) {
+            return;
+        }
+
+        if (! $this->isCookieSet()) {
+            return;
+        }
+
+        $diffByGroup = $this->groups->diffKeys( $this->getCookieData() );
+        $diffByConsents = $this->getCookieData()->diffKeys( $this->groups );
+        $diff = $diffByGroup->merge($diffByConsents);
+
+        $hasNewConfig = $diff->count() > 0;
+
+        if ($hasNewConfig) {
+            $this->resetConsents();
+            header("Refresh: 0");
+        }
     }
 
     public function isCookieSet(): bool
