@@ -100,6 +100,7 @@ The following attributes are augmented within the oreos-loop:
 | **`handle`** | `string` | The group handle you configured inside the `config/oreos.php` |
 | **`title`** | `string` | The title for your group as written in the control panel (localized). |
 | **`description`** | `string` | The description for your group as written in the control panel (localized). |
+| **`details`** | `array` | Further details as bard field written in the control panel (localized). |
 | **`consent`** | `bool` | If the user has given their consent or not. |
 | **`explicit`** | `bool` | If the cookie is explicitly set. |
 | **`required`** | `bool` | If the consent is required. |
@@ -115,6 +116,28 @@ To check if a cookie group was given consent to, use the `oreo:yourgrouphandle` 
 {{ else }}
     do something if yourgrouphandle is *not* checked
 {{ /if }}
+```
+
+### Usage with static caching
+
+When used with [static caching enabled](https://statamic.dev/static-caching), without any further changes, your site will throw a `419 page expired` error. For the plugin to work, you have to exclude the `oreo`-popup as well as all checks from cache by using the ``{{ nocache }}``-tag: https://statamic.dev/tags/nocache
+
+```
+# resources/views/layout.antlers.html
+
+{{ nocache }}
+    {{ oreos:popup }}
+{{ /nocache }}
+```
+
+```
+# resources/views/partials/embed.antlers.html
+
+{{ nocache }}
+    {{ if {oreo:embeds} }}
+        {{ embed_code }}
+    {{ /if }}
+{{ /nocache }}
 ```
 
 ## Authors
