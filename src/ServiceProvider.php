@@ -45,7 +45,7 @@ class ServiceProvider extends AddonServiceProvider
     protected function bootAddonViews(): self
     {
         $this->publishes([
-            __DIR__.'/../resources/views/form.antlers.php' => resource_path('views/vendor/statamic-oreos/form.antlers.php'),
+            __DIR__.'/../resources/views/form.antlers.html' => resource_path('views/vendor/statamic-oreos/form.antlers.html'),
             __DIR__.'/../resources/views/popup.antlers.html' => resource_path('views/vendor/statamic-oreos/popup.antlers.html'),
         ], 'oreos-views');
 
