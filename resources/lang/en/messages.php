@@ -4,6 +4,11 @@ return [
 
     'title' => 'Oreos',
 
+    'popup' => [
+        'headline' => 'Cookie consent',
+        'intro' => 'Please choose which cookies you want to consent to.',
+    ],
+
     'button' => [
         'save' => 'Save',
         'acceptall' => 'Accept all',
@@ -19,6 +24,7 @@ return [
     'fields' => [
         'title' => 'Title',
         'description' => 'Description',
+        'details' => 'Details',
 
         'required' => 'Required',
         'optional' => 'Optional',

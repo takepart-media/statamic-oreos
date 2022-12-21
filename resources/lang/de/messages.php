@@ -4,6 +4,11 @@ return [
 
     'title' => 'Oreos',
 
+    'popup' => [
+        'headline' => 'Cookie-Einstellungen',
+        'intro' => 'Bitte wählen Sie aus, welchen Cookie-Kategorien Sie zustimmen möchten.',
+    ],
+
     'button' => [
         'save' => 'Speichern',
         'acceptall' => 'Alle akzeptieren',
@@ -19,6 +24,7 @@ return [
     'fields' => [
         'title' => 'Titel',
         'description' => 'Beschreibung',
+        'details' => 'Details',
 
         'required' => 'Verpflichtend',
         'optional' => 'Optional',
